@@ -1,5 +1,6 @@
 {
   "EventBusConnection": "${EventBusConnection}|localhost",
+  //"EventBusConnection": "47.106.78.196",
 
   "VirtualHost": "/",
   "BrokerName": "surging_demo",

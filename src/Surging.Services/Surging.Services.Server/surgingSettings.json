@@ -17,9 +17,10 @@
     "ReloadOnChange": true
   },
   "EventBus": {
-    "EventBusConnection": "${EventBusConnection}|localhost",
-    "EventBusUserName": "guest",
-    "EventBusPassword": "guest",
+    //"EventBusConnection": "${EventBusConnection}|localhost",
+    "EventBusConnection": "47.106.78.196",
+    "EventBusUserName": "test",
+    "EventBusPassword": "test",
     "VirtualHost": "/",
     "BrokerName": "surging_demo",
     "Port": "5672"
