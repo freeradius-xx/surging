@@ -33,18 +33,19 @@ namespace Surging.Services.Client
         static void Main(string[] args)
         {
             Encoding.RegisterProvider(CodePagesEncodingProvider.Instance);
+            Console.WriteLine($"[{DateTime.Now.ToString()}]: Start to build Client......");
             var host = new ServiceHostBuilder()
                 .RegisterServices(builder =>
                 {
                     builder.AddMicroService(option =>
                     {
                         option.AddClient()
-                        .AddClientIntercepted(typeof(CacheProviderInterceptor))
+                        //.AddClientIntercepted(typeof(CacheProviderInterceptor)) //20180706
                         //option.UseZooKeeperManager(new ConfigInfo("127.0.0.1:2181"));
-                        .UseConsulManager(new ConfigInfo("127.0.0.1:8500"))
+                        //.UseConsulManager(new ConfigInfo("127.0.0.1:8500")) //20180706
                         .UseDotNettyTransport()
-                        .UseRabbitMQTransport()
-                        .AddCache()
+                        //.UseRabbitMQTransport() //comment by zony on 20180704
+                        //.AddCache() //20180706
                         //.UseKafkaMQTransport(kafkaOption =>
                         //{
                         //    kafkaOption.Servers = "127.0.0.1";
@@ -52,35 +53,42 @@ namespace Surging.Services.Client
                         //.UseProtoBufferCodec()
                         .UseMessagePackCodec();
                         builder.Register(p => new CPlatformContainer(ServiceLocator.Current));
+                        builder.RegisterType(typeof(Modules.Common.Domain.UserService)).As<IUserService>(); //Surging.Modules.Common的引用于20180706添加，临时测试
                     });
                 })
-                .Configure(build =>
-                build.AddEventBusFile("eventBusSettings.json", optional: false))
-                .Configure(build =>
-                build.AddCacheFile("cacheSettings.json", optional: false, reloadOnChange: true))
-                .UseNLog(LogLevel.Error)
-               // .UseLog4net(LogLevel.Error)
-                .UseServiceCache()
-                .UseProxy() 
-                .UseClient()
+                //.Configure(build =>
+                //build.AddEventBusFile("eventBusSettings.json", optional: false)) //20180706
+                //.Configure(build =>
+                //build.AddCacheFile("cacheSettings.json", optional: false, reloadOnChange: true)) //20180706
+                .UseNLog(LogLevel.Trace)
+                // .UseLog4net(LogLevel.Error)
+                //.UseServiceCache() //20180706
+                //.UseProxy() //20180706
+                //.UseClient() //20180706
                 .UseStartup<Startup>()
                 .Build();
 
+            Console.WriteLine($"[{DateTime.Now.ToString()}]: Start to run Client......");
             using (host.Run())
             {
-                 Startup.Test(ServiceLocator.GetService<IServiceProxyFactory>());
+                Console.WriteLine($"[{DateTime.Now.ToString()}]: Run Client successfully.");
+
+                //Startup.Test(ServiceLocator.GetService<IServiceProxyFactory>());
                 //Startup.TestRabbitMq(ServiceLocator.GetService<IServiceProxyFactory>());
                 // Startup.TestForRoutePath(ServiceLocator.GetService<IServiceProxyProvider>());
                 /// test Parallel
                 //var connectionCount = 200000;
                 //StartRequest(connectionCount);
-                //Console.ReadLine();
+
+                Startup.TestLocalService();
+
+                Console.WriteLine($"[{DateTime.Now.ToString()}]: ReadLine to exit.");
+                Console.ReadLine();
             }
         }
 
         private static void StartRequest(int connectionCount)
         {
-
             var service = ServiceLocator.GetService<IServiceProxyFactory>();
             var userProxy = service.CreateProxy<IUserService>("User");
             Parallel.For(0, connectionCount /1000, new ParallelOptions() { MaxDegreeOfParallelism = 10 },u =>

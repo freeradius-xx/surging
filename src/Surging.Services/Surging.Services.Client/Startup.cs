@@ -67,7 +67,8 @@ namespace Surging.Services.Client
             build
               .AddCacheFile("cacheSettings.json", optional: false);
         }
-        
+        #endregion
+
         /// <summary>
         /// 测试
         /// </summary>
@@ -145,7 +146,17 @@ namespace Surging.Services.Client
             Console.WriteLine("Press any key to exit...");
             Console.ReadLine();
         }
-        #endregion
 
+        public static void TestLocalService()
+        {
+            Console.WriteLine($"[{DateTime.Now.ToString()}]: Invoke method TestLocalService...");
+
+            var userProxy = ServiceLocator.GetService<IUserService>("User");
+            var taskResult = userProxy.GetUser(new UserModel { });
+
+            Console.WriteLine($"[{DateTime.Now.ToString()}]: Result->[{taskResult.Result.Name}].");
+
+            Console.WriteLine($"[{DateTime.Now.ToString()}]: Invoke method TestLocalService successful.");
+        }
     }
 }

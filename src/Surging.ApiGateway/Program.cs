@@ -23,6 +23,7 @@ namespace Surging.ApiGateway
     {
         public static void Main(string[] args)
         {
+            Console.WriteLine($"[{DateTime.Now.ToString()}]: Start to build web host...");
             var host = new WebHostBuilder()
                 .UseUrls("http://*:729")
                 .UseKestrel(options =>
@@ -40,6 +41,7 @@ namespace Surging.ApiGateway
                 .UseStartup<Startup>()
                 .UseApplicationInsights()
                 .Build();
+            Console.WriteLine($"[{DateTime.Now.ToString()}]: Start to run web host...");
             host.Run();
           
         }

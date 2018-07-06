@@ -32,6 +32,7 @@ namespace Surging.Services.Server
         {
 
             Encoding.RegisterProvider(CodePagesEncodingProvider.Instance);
+            Console.WriteLine($"[{DateTime.Now.ToString()}]: Start to build server...");
             var host = new ServiceHostBuilder()
                 .RegisterServices(builder =>
                 {
@@ -62,9 +63,9 @@ namespace Surging.Services.Server
                         builder.Register(p => new CPlatformContainer(ServiceLocator.Current));
                     });
                 })
-              .SubscribeAt()
-               // .UseLog4net(LogLevel.Trace, "Configs/log4net.config")
-               .UseNLog("${LogPath}|Configs/NLog.config")
+                .SubscribeAt()
+                .UseLog4net(LogLevel.Trace, "Configs/log4net.config")
+                //.UseNLog("${LogPath}|Configs/NLog.config")
                 //.UseServer("127.0.0.1", 98)
                 //.UseServer("127.0.0.1", 98，“true”) //自动生成Token
                 //.UseServer("127.0.0.1", 98，“123456789”) //固定密码Token
@@ -77,12 +78,13 @@ namespace Surging.Services.Server
                 .UseProxy()
                 .UseServiceCache()
                 .Configure(build =>
-                build.AddCacheFile("${cachepath}|cacheSettings.json", optional: false, reloadOnChange: true))
-                  .Configure(build =>
-                build.AddCPlatformFile("${surgingpath}|surgingSettings.json", optional: false, reloadOnChange: true))
+                    build.AddCacheFile("${cachepath}|cacheSettings.json", optional: false, reloadOnChange: true))
+                .Configure(build =>
+                    build.AddCPlatformFile("${surgingpath}|surgingSettings.json", optional: false, reloadOnChange: true))
                 .UseStartup<Startup>()
                 .Build();
 
+            Console.WriteLine($"[{DateTime.Now.ToString()}]: Start to run server...");
             using (host.Run())
             {
                 Console.WriteLine($"服务端启动成功，{DateTime.Now}。");

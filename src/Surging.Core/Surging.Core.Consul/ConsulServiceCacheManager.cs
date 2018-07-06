@@ -180,6 +180,7 @@ namespace Surging.Core.Consul
              var watcher = new ChildrenMonitorWatcher(_consul, _manager, _configInfo.CachePath,
                 async (oldChildrens, newChildrens) => await ChildrenChange(oldChildrens, newChildrens),
                   (result) => ConvertPaths(result).Result);
+            _logger.LogInformation("EnterCaches: _consul.KV.Keys");
             if (_consul.KV.Keys(_configInfo.CachePath).Result.Response?.Count() > 0)
             {
                 var result = await _consul.GetChildrenAsync(_configInfo.CachePath);

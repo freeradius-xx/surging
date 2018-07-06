@@ -28,14 +28,13 @@ namespace Surging.Core.DotNetty
                 }).SingleInstance();
                 services.Register(provider =>
                 {
-
                     var serviceExecutor = provider.Resolve<IServiceExecutor>();
                     var messageListener = provider.Resolve<DotNettyServerMessageListener>();
                     return new DefaultServiceHost(async endPoint =>
-                {
-                    await messageListener.StartAsync(endPoint);
-                    return messageListener;
-                }, serviceExecutor);
+                        {
+                            await messageListener.StartAsync(endPoint);
+                            return messageListener;
+                        }, serviceExecutor);
                 }).As<IServiceHost>();
             }
             return builder;

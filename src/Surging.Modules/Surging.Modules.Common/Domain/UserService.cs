@@ -52,6 +52,7 @@ namespace Surging.Modules.Common.Domain
 
         public Task<UserModel> GetUser(UserModel user)
         {
+            Task.Delay(2000).Wait(); //20180706: test
             return Task.FromResult(new UserModel
             {
                 Name = "fanly",

@@ -1,0 +1,64 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1" MembersFormat="FullSignature">
+  <Class Name="Surging.Core.DotNetty.Adapter.TransportMessageChannelHandlerAdapter" Collapsed="true">
+    <Position X="9.75" Y="3" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAEAAAAAAA=</HashCode>
+      <FileName>Adapter\TransportMessageChannelHandlerAdapter.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Surging.Core.DotNetty.ContainerBuilderExtensions">
+    <Position X="7.75" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>ContainerBuilderExtensions.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Surging.Core.DotNetty.DotNettyMessageClientSender" Collapsed="true">
+    <Position X="0.75" Y="3.5" Width="2.5" />
+    <TypeIdentifier>
+      <HashCode>AEBAAAAAACAAAAAAAAAAAAAAAAAAAAAAAAAAAAEAAAA=</HashCode>
+      <FileName>DotNettyMessageSender.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="Surging.Core.DotNetty.DotNettyMessageSender">
+    <Position X="3" Y="0.5" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAABAAAAAAAAAAEA=</HashCode>
+      <FileName>DotNettyMessageSender.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Surging.Core.DotNetty.DotNettyServerMessageListener" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="10" Y="1.5" Width="1.5" />
+    <NestedTypes>
+      <Class Name="Surging.Core.DotNetty.DotNettyServerMessageListener.ServerHandler" Collapsed="true">
+        <TypeIdentifier>
+          <NewMemberFileName>DotNettyServerMessageListener.cs</NewMemberFileName>
+        </TypeIdentifier>
+      </Class>
+    </NestedTypes>
+    <TypeIdentifier>
+      <HashCode>AEAgAAABACAAAAAAAAAAAAAAIAAAAAAAAUAAAQAAAEA=</HashCode>
+      <FileName>DotNettyServerMessageListener.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="Surging.Core.DotNetty.DotNettyServerMessageSender" Collapsed="true">
+    <Position X="4.5" Y="3.5" Width="2.5" />
+    <TypeIdentifier>
+      <HashCode>AABAAAAAAAAABAAAAAAAAAAAAAAAAAAAAAAAAAEAAAA=</HashCode>
+      <FileName>DotNettyMessageSender.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="Surging.Core.DotNetty.DotNettyTransportClientFactory" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="7.75" Y="2.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAgAQABACAAAAAAAABAAAAAIABAAoAAAAAQACAAAEA=</HashCode>
+      <FileName>DotNettyTransportClientFactory.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Font Name="Microsoft YaHei UI" Size="9" />
+</ClassDiagram>
