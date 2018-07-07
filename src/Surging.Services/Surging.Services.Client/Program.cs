@@ -43,7 +43,7 @@ namespace Surging.Services.Client
                         //.AddClientIntercepted(typeof(CacheProviderInterceptor)) //20180706
                         //option.UseZooKeeperManager(new ConfigInfo("127.0.0.1:2181"));
                         //.UseConsulManager(new ConfigInfo("127.0.0.1:8500")) //20180706
-                        .UseDotNettyTransport()
+                        //.UseDotNettyTransport()
                         //.UseRabbitMQTransport() //comment by zony on 20180704
                         //.AddCache() //20180706
                         //.UseKafkaMQTransport(kafkaOption =>
@@ -72,6 +72,7 @@ namespace Surging.Services.Client
             using (host.Run())
             {
                 Console.WriteLine($"[{DateTime.Now.ToString()}]: Run Client successfully.");
+                Console.WriteLine($"Thread Id: {Environment.CurrentManagedThreadId}");
 
                 //Startup.Test(ServiceLocator.GetService<IServiceProxyFactory>());
                 //Startup.TestRabbitMq(ServiceLocator.GetService<IServiceProxyFactory>());

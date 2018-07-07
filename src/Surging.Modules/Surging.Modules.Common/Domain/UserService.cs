@@ -52,7 +52,8 @@ namespace Surging.Modules.Common.Domain
 
         public Task<UserModel> GetUser(UserModel user)
         {
-            Task.Delay(2000).Wait(); //20180706: test
+            //Task.Delay(2000).Wait(); //20180706: test
+            Console.WriteLine($"Thread Id: {Environment.CurrentManagedThreadId}");
             return Task.FromResult(new UserModel
             {
                 Name = "fanly",

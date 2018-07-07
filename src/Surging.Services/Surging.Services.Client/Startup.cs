@@ -147,14 +147,16 @@ namespace Surging.Services.Client
             Console.ReadLine();
         }
 
-        public static void TestLocalService()
+        public async static void TestLocalService()
         {
             Console.WriteLine($"[{DateTime.Now.ToString()}]: Invoke method TestLocalService...");
 
             var userProxy = ServiceLocator.GetService<IUserService>("User");
-            var taskResult = userProxy.GetUser(new UserModel { });
+            //var taskResult = userProxy.GetUser(new UserModel { });
+            //Console.WriteLine($"[{DateTime.Now.ToString()}]: Result->[{taskResult.Result.Name}].");
 
-            Console.WriteLine($"[{DateTime.Now.ToString()}]: Result->[{taskResult.Result.Name}].");
+            var userModel = await userProxy.GetUser(new UserModel { });
+            Console.WriteLine($"[{DateTime.Now.ToString()}]: Result->[{userModel.Name}].");
 
             Console.WriteLine($"[{DateTime.Now.ToString()}]: Invoke method TestLocalService successful.");
         }
