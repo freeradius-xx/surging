@@ -26,6 +26,8 @@ namespace Surging.Modules.Common.Domain
 
         public Task<string> GetUserName(int id)
         {
+            var stackTrace = new System.Diagnostics.StackTrace();
+            Console.WriteLine(stackTrace.ToString());
             return Task.FromResult($"id:{id} is name fanly.");
         }
 
@@ -54,10 +56,11 @@ namespace Surging.Modules.Common.Domain
         {
             //Task.Delay(2000).Wait(); //20180706: test
             Console.WriteLine($"Thread Id: {Environment.CurrentManagedThreadId}");
+            Console.WriteLine(new System.Diagnostics.StackTrace().ToString());
             return Task.FromResult(new UserModel
             {
-                Name = "fanly",
-                Age = 18
+                Name = "fanly20180718",
+                Age = 19
             });
         }
 

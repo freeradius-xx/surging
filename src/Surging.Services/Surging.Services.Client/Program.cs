@@ -40,12 +40,12 @@ namespace Surging.Services.Client
                     builder.AddMicroService(option =>
                     {
                         option.AddClient()
-                        //.AddClientIntercepted(typeof(CacheProviderInterceptor)) //20180706
+                        .AddClientIntercepted(typeof(CacheProviderInterceptor)) //20180706
                         //option.UseZooKeeperManager(new ConfigInfo("127.0.0.1:2181"));
-                        //.UseConsulManager(new ConfigInfo("127.0.0.1:8500")) //20180706
-                        //.UseDotNettyTransport()
+                        .UseConsulManager(new ConfigInfo("127.0.0.1:8500")) //20180706
+                        .UseDotNettyTransport()
                         //.UseRabbitMQTransport() //comment by zony on 20180704
-                        //.AddCache() //20180706
+                        .AddCache() //20180706
                         //.UseKafkaMQTransport(kafkaOption =>
                         //{
                         //    kafkaOption.Servers = "127.0.0.1";
@@ -53,18 +53,18 @@ namespace Surging.Services.Client
                         //.UseProtoBufferCodec()
                         .UseMessagePackCodec();
                         builder.Register(p => new CPlatformContainer(ServiceLocator.Current));
-                        builder.RegisterType(typeof(Modules.Common.Domain.UserService)).As<IUserService>(); //Surging.Modules.Common的引用于20180706添加，临时测试
+                        //builder.RegisterType(typeof(Modules.Common.Domain.UserService)).As<IUserService>(); //Surging.Modules.Common的引用于20180706添加，临时测试
                     });
                 })
-                //.Configure(build =>
-                //build.AddEventBusFile("eventBusSettings.json", optional: false)) //20180706
-                //.Configure(build =>
-                //build.AddCacheFile("cacheSettings.json", optional: false, reloadOnChange: true)) //20180706
+                .Configure(build =>
+                build.AddEventBusFile("eventBusSettings.json", optional: false)) //20180706
+                .Configure(build =>
+                build.AddCacheFile("cacheSettings.json", optional: false, reloadOnChange: true)) //20180706
                 .UseNLog(LogLevel.Trace)
                 // .UseLog4net(LogLevel.Error)
-                //.UseServiceCache() //20180706
-                //.UseProxy() //20180706
-                //.UseClient() //20180706
+                .UseServiceCache() //20180706
+                .UseProxy() //20180706
+                .UseClient() //20180706
                 .UseStartup<Startup>()
                 .Build();
 
@@ -76,12 +76,14 @@ namespace Surging.Services.Client
 
                 //Startup.Test(ServiceLocator.GetService<IServiceProxyFactory>());
                 //Startup.TestRabbitMq(ServiceLocator.GetService<IServiceProxyFactory>());
-                // Startup.TestForRoutePath(ServiceLocator.GetService<IServiceProxyProvider>());
-                /// test Parallel
+                //Startup.TestForRoutePath(ServiceLocator.GetService<IServiceProxyProvider>());
+                //test Parallel
                 //var connectionCount = 200000;
                 //StartRequest(connectionCount);
 
-                Startup.TestLocalService();
+                //Startup.TestLocalService(); //测试本地模块和服务调用
+
+                Startup.TestRemoteService();
 
                 Console.WriteLine($"[{DateTime.Now.ToString()}]: ReadLine to exit.");
                 Console.ReadLine();

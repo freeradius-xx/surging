@@ -160,5 +160,26 @@ namespace Surging.Services.Client
 
             Console.WriteLine($"[{DateTime.Now.ToString()}]: Invoke method TestLocalService successful.");
         }
+
+        public static void TestRemoteService()
+        {
+            try
+            {
+                Console.WriteLine($"[{DateTime.Now.ToString()}]: Invoke method TestRemoteService...");
+
+                var serviceProxyFactory = ServiceLocator.GetService<IServiceProxyFactory>();
+                var userProxy = serviceProxyFactory.CreateProxy<IUserService>("User");
+
+                //var userModel = await userProxy.GetUser(new UserModel { });
+                var userModel = userProxy.GetUser(new UserModel { }).GetAwaiter().GetResult();
+                Console.WriteLine($"[{DateTime.Now.ToString()}]: Result->[{userModel.Name}].");
+
+                Console.WriteLine($"[{DateTime.Now.ToString()}]: Invoke method TestRemoteService successful.");
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.ToString());
+            }
+        }
     }
 }
