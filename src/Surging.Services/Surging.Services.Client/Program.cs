@@ -42,7 +42,7 @@ namespace Surging.Services.Client
                         option.AddClient()
                         .AddClientIntercepted(typeof(CacheProviderInterceptor)) //20180706
                         //option.UseZooKeeperManager(new ConfigInfo("127.0.0.1:2181"));
-                        .UseConsulManager(new ConfigInfo("127.0.0.1:8500")) //20180706
+                        .UseConsulManager(new ConfigInfo("47.106.78.196:8500")) //20180706
                         .UseDotNettyTransport()
                         //.UseRabbitMQTransport() //comment by zony on 20180704
                         .AddCache() //20180706

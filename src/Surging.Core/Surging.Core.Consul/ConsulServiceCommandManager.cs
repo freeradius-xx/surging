@@ -40,6 +40,7 @@ namespace Surging.Core.Consul
             _stringSerializer = stringSerializer;
             _manager = manager;
             _serviceRouteManager = serviceRouteManager;
+            _logger.LogInformation($"ConsulServiceCommandManager->ConsulClient Connect to http://{configInfo.Host}:{configInfo.Port}"); //20180719
             _consul = new ConsulClient(config =>
             {
                 config.Address = new Uri($"http://{configInfo.Host}:{configInfo.Port}");

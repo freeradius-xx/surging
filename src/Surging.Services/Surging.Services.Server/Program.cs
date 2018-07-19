@@ -64,8 +64,8 @@ namespace Surging.Services.Server
                     });
                 })
                 .SubscribeAt()
-                .UseLog4net(LogLevel.Trace, "Configs/log4net.config")
-                //.UseNLog("${LogPath}|Configs/NLog.config")
+                //.UseLog4net(LogLevel.Trace, "Configs/log4net.config")
+                .UseNLog("${LogPath}|Configs/NLog.config")
                 //.UseServer("127.0.0.1", 98)
                 //.UseServer("127.0.0.1", 98，“true”) //自动生成Token
                 //.UseServer("127.0.0.1", 98，“123456789”) //固定密码Token

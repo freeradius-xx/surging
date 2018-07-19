@@ -39,6 +39,7 @@ namespace Surging.Core.Consul
             _serviceRouteFactory = serviceRouteFactory;
             _logger = logger;
             _manager = manager;
+            _logger.LogInformation($"ConsulServiceRouteManager->ConsulClient Connect to http://{configInfo.Host}:{configInfo.Port}"); //20180719
             _consul = new ConsulClient(config =>
             {
                 config.Address = new Uri($"http://{configInfo.Host}:{configInfo.Port}");
